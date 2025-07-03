@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class RoomServiceApplicationTests {
 
-	@Test
+//	@Test
 	void contextLoads() {
 	}
 

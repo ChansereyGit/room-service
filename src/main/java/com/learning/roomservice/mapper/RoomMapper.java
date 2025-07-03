@@ -2,11 +2,16 @@ package com.learning.roomservice.mapper;
 
 import com.learning.roomservice.domain.Room;
 import com.learning.roomservice.dto.RoomDTO;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class RoomMapper {
+@Mapper(componentModel = "spring")
+public interface RoomMapper {
 
+    Room toRoom(RoomDTO roomDTO);
+
+    RoomDTO toRoomDTO(Room room);
+
+    /*
     public Room toRoom(RoomDTO roomDTO) {
         Room room = new Room();
         room.setName(roomDTO.getName());
@@ -20,4 +25,5 @@ public class RoomMapper {
         roomDTO.setAttributes(room.getAttributes());
         return roomDTO;
     }
+     */
 }
