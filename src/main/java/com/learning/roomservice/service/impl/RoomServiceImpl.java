@@ -23,11 +23,10 @@ public class RoomServiceImpl implements RoomService {
     public Mono<RoomDTO> createRoom(RoomDTO roomDTO) {
         log.debug("Saving room to DB: {}", roomDTO);
         Room room = roomMapper.toRoom(roomDTO);
-        Mono<RoomDTO> mono = roomRepository.save(room)
+        return roomRepository.save(room)
                 .doOnSuccess(saved -> log.info("Room saved {}", saved))
 //                .map(r -> roomMapper.toRoomDTO(r)); --> lambda
                 .map(roomMapper::toRoomDTO);
-        return mono;
     }
 
     @Override
@@ -50,5 +49,12 @@ public class RoomServiceImpl implements RoomService {
                     return monoRoom;
                 })
                 .map(roomMapper::toRoomDTO);
+    }
+
+    @Override
+    public Mono<Void> deleteRoom(String id) {
+        log.debug("Deleting room with id {}", id);
+        return roomRepository.deleteById(id)
+                .doOnSuccess(deleted -> log.info("Room deleted {}", id));
     }
 }

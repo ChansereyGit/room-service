@@ -7,4 +7,5 @@ public interface RoomService {
     Mono<RoomDTO> createRoom(RoomDTO roomDTO);
     Mono<RoomDTO> getRoomById(String id);
     Mono<RoomDTO> updateRoom(String id, RoomDTO roomDTO);
+    Mono<Void> deleteRoom(String id);
 }
